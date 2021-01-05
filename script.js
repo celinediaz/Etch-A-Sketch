@@ -4,7 +4,10 @@ const size = document.querySelector(".size");
 const reset = document.querySelector(".reset");
 let dim = 16;
 let random = 0;
-
+/**
+ * Builds the board according to dim. If the user had clicked on
+ * random color then you get random colors, else you get black.
+ */
 function buildBoard() {
   container.style.gridTemplateColumns = `repeat(${dim}, 1fr)`;
   container.style.gridTemplateRows = `repeat(${dim}, 1fr)`;
@@ -26,13 +29,18 @@ function buildBoard() {
     container.appendChild(item);
   }
 }
-
 buildBoard();
 
+// Refreshes the page when clicking on the reset button
 reset.addEventListener("click", () => window.location.reload());
 
+/** 
+ * When the size button is clicked the user is asked for a number
+ * if it's smaller or equal to 64 it eliminates the previous style
+ * on the grid items and calls the buildBoard function.
+ */
 size.addEventListener("click", () => {
-  dim = prompt("Enter a number under 64");
+  dim = prompt("Enter a number under or equal to 64");
   if (!(dim <= 64)) {
     alert("hey! that wasn't under 64!");
     return;
@@ -44,6 +52,10 @@ size.addEventListener("click", () => {
   buildBoard();
 });
 
+/**
+ * If the color button is clicked it switches its content and 
+ * state to either random color or black.
+ */
 color.addEventListener("click", () => {
   color.textContent = random ? "Random color" : "Black";
   random = !random ? true : false;
