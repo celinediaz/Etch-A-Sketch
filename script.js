@@ -10,19 +10,18 @@ function buildBoard() {
   container.style.gridTemplateRows = `repeat(${dim}, 1fr)`;
   let red, green, blue;
   for (let i = 0; i < dim * dim; i++) {
-    let n=0.1;
+    let n = 0.1;
     const item = document.createElement("div");
     item.classList.add("grid-item");
     item.addEventListener("mouseover", () => {
-        if(random===true){
-            red = Math.floor(Math.random() * 255) + 1;
-            blue = Math.floor(Math.random() * 255) + 1;
-            green = Math.floor(Math.random() * 255) + 1;
-        }
-        else{
-            red=0, green=0, blue=0; 
-        }
-        item.style.backgroundColor = `rgba(${red}, ${green}, ${blue}, ${n+=0.1})`;
+      if (random === true) {
+        red = Math.floor(Math.random() * 255) + 1;
+        blue = Math.floor(Math.random() * 255) + 1;
+        green = Math.floor(Math.random() * 255) + 1;
+      } else {
+        (red = 0), (green = 0), (blue = 0);
+      }
+      item.style.backgroundColor = `rgba(${red}, ${green}, ${blue}, ${(n += 0.1)})`;
     });
     container.appendChild(item);
   }
@@ -46,6 +45,6 @@ size.addEventListener("click", () => {
 });
 
 color.addEventListener("click", () => {
- color.textContent = (random ? 'Random color' : 'Black');
- random = !random ? true : false;
+  color.textContent = random ? "Random color" : "Black";
+  random = !random ? true : false;
 });
